@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import { React } from "react";
+import { Button } from "@material-ui/core";
+import { Box } from "@mui/system";
+import CustomizedTables from "./Table";
+
+function callApi(){
+  fetch('https://api.github.com/users/augustbassfa/repos', {method: 'GET'})
+  .then((response) => response.json())
+  .then((data) => console.log(data));
+
+ 
+}
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    return (
+    <div>
+      
+
+
+      <Box
+      m={1}
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      onClick={callApi}
+      >
+      <Button
+      color="primary"
+      variant="contained"
+      size="large"
+      > 
+      Cargar </Button>
+
+      </Box>
+      
+      <CustomizedTables
+
+      />
+      
     </div>
   );
 }
+
 
 export default App;
