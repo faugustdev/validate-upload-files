@@ -29,37 +29,41 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
   }));
   
-  function createData(typeDocument, fileName) {
+  /*function createData(typeDocument, fileName) {
     return { typeDocument, fileName};
   }
   
   const rows = [
-      createData('document-photo','10177_Cédula.jpg'),
+      createData('','10177_Cédula.jpg'),
       createData('selfie-photo', '10177_Foto.jpg'),
-      createData('document-photo', '10299_Cédula.png'),
-      createData('selfie-photo', "10299_Foto.jpg"),
       
   ];
-  
-  function CustomizedTables(props) {
+  */
+  function CustomizedTables({metaData}) {
+    console.log(metaData) 
     return (
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <Table sx={{ minWidth: 50 }} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell>Tipo de Documento</StyledTableCell>
-              <StyledTableCell align="right">Nombre del Archivo</StyledTableCell>
+              <StyledTableCell>Cédula</StyledTableCell>
+              <StyledTableCell align="right">Foto</StyledTableCell>
               </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <StyledTableRow key={row.typeDocument}>
+            {metaData !== undefined && metaData.length > 0 ? metaData.map((row) => (
+              <StyledTableRow>
                 <StyledTableCell component="th" scope="row">
-                  {row.typeDocument}
+                  {row[0].data.filename}
                 </StyledTableCell>
-                <StyledTableCell align="right">{row.fileName}</StyledTableCell>
+                <StyledTableCell align="right">{row[1].data.filename}</StyledTableCell>
                </StyledTableRow>
-            ))}
+            )): <StyledTableRow>
+            <StyledTableCell component="th" scope="row">
+            </StyledTableCell>
+            <StyledTableCell align="right"></StyledTableCell>
+           </StyledTableRow>
+        }
           </TableBody>
         </Table>
       </TableContainer>
