@@ -7,15 +7,16 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
+      color: theme.palette.common.white, fontSize: 16,
     },
     [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
+      fontSize: 15,
     },
   }));
   
@@ -28,46 +29,58 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
       border: 0,
     },
   }));
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+      overflow: 'hidden',
+      padding: theme.spacing(0, 1.5),
+    },
+    paper: {
+      maxWidth: 400,
+      margin: `${theme.spacing(0)}px auto`,
+      padding: theme.spacing(1.5),
+    },
+  }));
   
-  /*function createData(typeDocument, fileName) {
-    return { typeDocument, fileName};
-  }
-  
-  const rows = [
-      createData('','10177_Cédula.jpg'),
-      createData('selfie-photo', '10177_Foto.jpg'),
-      
-  ];
-  */
   function CustomizedTables({metaData}) {
-    console.log(metaData) 
-    return (
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 50 }} aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              <StyledTableCell>Cédula</StyledTableCell>
-              <StyledTableCell align="right">Foto</StyledTableCell>
-              </TableRow>
-          </TableHead>
-          <TableBody>
-            {metaData !== undefined && metaData.length > 0 ? metaData.map((row) => (
-              <StyledTableRow>
-                <StyledTableCell component="th" scope="row">
-                  {row[0].data.filename}
-                </StyledTableCell>
-                <StyledTableCell align="right">{row[1].data.filename}</StyledTableCell>
-               </StyledTableRow>
-            )): <StyledTableRow>
-            <StyledTableCell component="th" scope="row">
-            </StyledTableCell>
-            <StyledTableCell align="right"></StyledTableCell>
-           </StyledTableRow>
-        }
-          </TableBody>
-        </Table>
-      </TableContainer>
-    );
-  }
-  
+      console.log(metaData) 
+        const classes = useStyles();
+      return (
+        <div className={classes.root}>
+            <Paper className={classes.paper}>
+                <Grid container wrap="nowrap" spacing={2}>
+                    <Grid item>
+                          <TableContainer component={Paper}>
+                            <Table sx={{ minWidth: 400 }} size="small" aria-label="a dense table">
+                            <TableHead>
+                                <TableRow>
+                                <StyledTableCell  align="center">Cédula</StyledTableCell>
+                                <StyledTableCell align="center">Foto</StyledTableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {metaData !== undefined && metaData.length > 0 ? metaData.map((row) => (
+                                <StyledTableRow>
+                                    <StyledTableCell align="center" component="th" scope="row">
+                                    {row[0].data.filename}
+                                    </StyledTableCell>
+                                    <StyledTableCell align="center">{row[1].data.filename}</StyledTableCell>
+                                </StyledTableRow>
+                                )): <StyledTableRow>
+                                <StyledTableCell align="center" component="th" scope="row">
+                                </StyledTableCell>
+                                <StyledTableCell align="center"></StyledTableCell>
+                            </StyledTableRow>
+                            }
+                            </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </Grid>
+                </Grid>
+            </Paper>
+        </div>    
+                        );
+                    }
+                    
   export default CustomizedTables;
