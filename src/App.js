@@ -1,5 +1,5 @@
 import  React, {useState} from "react";
-import { Button } from "@material-ui/core";
+import { Button} from "@material-ui/core";
 import { Box } from "@mui/system";
 import CustomizedTables from "./Table";
 import Typography from '@material-ui/core/Typography';
@@ -11,10 +11,10 @@ let dataMeta = ([])
 function App() {
 
   let [loading, setLoading] = useState(false);
- 
   const [metaData, setMetaData] = useState([])
   const fetchData = async () => {
     setLoading(!loading);
+    setMetaData([]);
     const response = await fetch('http://192.168.1.203:8080/bus-services/api/bulk_upload', {method: 'POST'})
     if (!response.ok) {
       throw new Error ('No se obtuvieron datos!')
@@ -26,6 +26,8 @@ function App() {
   }
   const message = 'Exitosos';
   const message1 = 'Fallidos';
+
+  
     return (
     <div>
       <Box
