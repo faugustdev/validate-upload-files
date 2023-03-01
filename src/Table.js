@@ -37,7 +37,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
       padding: theme.spacing(0, 1.5),
     },
     paper: {
-      maxWidth: 400,
+      maxWidth: 800,
       margin: `${theme.spacing(0)}px auto`,
       padding: theme.spacing(1.5),
     },
@@ -57,6 +57,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
                                 <TableRow>
                                 <StyledTableCell  align="center">Cédula</StyledTableCell>
                                 <StyledTableCell align="center">Foto</StyledTableCell>
+                                <StyledTableCell align="center" sx={{ minWidth: 500 }} >Estatus</StyledTableCell >
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -65,7 +66,10 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
                                     <StyledTableCell align="center" component="th" scope="row">
                                     {row[0].data.filename}
                                     </StyledTableCell>
-                                    <StyledTableCell align="center">{row[1].data.filename}</StyledTableCell>
+                                    <StyledTableCell align="center">{row[1].data.filename}
+                                    </StyledTableCell>
+                                    <StyledTableCell align="center">{row[2].message}
+                                    </StyledTableCell>
                                 </StyledTableRow>
                                 )): <StyledTableRow>
                                 <StyledTableCell align="center" component="th" scope="row">
