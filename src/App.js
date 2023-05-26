@@ -19,7 +19,7 @@ function App() {
   const [successNumber, setsuccessNumber] = useState(0);
   const [errorNumber, seterrorNumber] = useState(0);
   const fetchDataN = async () => {
-    const response = await fetch('http://192.168.1.203:8080/bus-services/api/inquiry_upload', {method: 'POST'})
+    const response = await fetch('http://3.215.97.150:8080/bus-services/api/inquiry_upload', {method: 'POST'})
     if (!response.ok) {
       throw new Error ('No se obtuvieron datos!')
     }
@@ -35,7 +35,7 @@ function App() {
   const fetchData = async () => {
     setLoading(!loading);
     setMetaData([]);
-    const response = await fetch('http://192.168.1.203:8080/bus-services/api/bulk_upload', {method: 'POST'})
+    const response = await fetch('http://3.215.97.150:8080/bus-services/api/bulk_upload', {method: 'POST'})
     if (!response.ok) {
       throw new Error ('No se obtuvieron datos!')
     }
@@ -69,7 +69,7 @@ function App() {
           borderRadius: 1,
           }}>
           <item>
-            <Badge badgeContent={successNumber} color="primary">
+            <Badge badgeContent={successNumber} color="primary" max={9999}>
             <CloudDoneOutlinedIcon/>
           </Badge>
           </item> 
@@ -85,7 +85,7 @@ function App() {
           }}>
 
           <item>
-          <Badge badgeContent={errorNumber} color="secondary">
+          <Badge badgeContent={errorNumber} color="secondary" max={9999}>
               <CloudOffOutlinedIcon />
           </Badge>
           </item>
